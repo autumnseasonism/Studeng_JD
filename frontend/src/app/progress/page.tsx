@@ -102,9 +102,9 @@ export default function ProgressPage() {
       {/* 头部 */}
       <header className="glass sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">大学生求职陪跑助手</h1>
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-green-600">大学生求职陪跑助手</h1>
           <button 
-            className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+            className="text-sm font-medium text-orange-600 hover:text-orange-800 transition-colors"
             onClick={() => router.push('/')}
           >
             返回上传页
@@ -116,7 +116,7 @@ export default function ProgressPage() {
       <main className="container mx-auto px-4 py-16">
         <div className="max-w-3xl mx-auto fade-in">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+            <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-green-600">
               分析进度
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
@@ -143,18 +143,18 @@ export default function ProgressPage() {
                     
                     return (
                       <div key={key} className="flex items-center space-x-4">
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center ${isCompleted ? 'bg-green-500 text-white' : isCurrent ? 'bg-blue-500 text-white' : isError ? 'bg-red-500 text-white' : 'bg-gray-200 text-gray-500'}`}>
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center ${isCompleted ? 'bg-green-500 text-white' : isCurrent ? 'bg-orange-500 text-white' : isError ? 'bg-red-500 text-white' : 'bg-gray-200 text-gray-500'}`}>
                           {isCompleted ? '✓' : isCurrent ? (
                             <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full loading-spinner"></div>
                           ) : isError ? '✗' : ''}
                         </div>
                         <div className="flex-1">
                           <div className="flex justify-between items-center mb-1">
-                            <span className={`font-medium ${isCompleted ? 'text-green-600' : isCurrent ? 'text-blue-600' : isError ? 'text-red-600' : 'text-gray-500'}`}>
+                            <span className={`font-medium ${isCompleted ? 'text-green-600' : isCurrent ? 'text-orange-600' : isError ? 'text-red-600' : 'text-gray-500'}`}>
                               {config.label}
                             </span>
                             {isCurrent && (
-                              <span className="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">当前阶段</span>
+                              <span className="text-xs font-medium text-orange-600 bg-orange-100 px-2 py-1 rounded-full">当前阶段</span>
                             )}
                           </div>
                           <div className="text-sm text-gray-500">{config.description}</div>
@@ -178,7 +178,7 @@ export default function ProgressPage() {
                 </div>
                 <div className="text-sm text-gray-500 flex items-center justify-center gap-2">
                   <span>已等待时间:</span>
-                  <span className="font-medium text-blue-600">{formatTime(elapsedTime)}</span>
+                  <span className="font-medium text-orange-600">{formatTime(elapsedTime)}</span>
                 </div>
               </div>
               

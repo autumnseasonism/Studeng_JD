@@ -1,13 +1,12 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
   --background: #f8fafc;
   --foreground: #1e293b;
-  --primary: #3b82f6;
-  --primary-dark: #2563eb;
-  --secondary: #8b5cf6;
-  --accent: #f97316;
+  --primary: #f97316;
+  --primary-dark: #ea580c;
+  --secondary: #10b981;
+  --accent: #f59e0b;
   --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
@@ -77,7 +76,7 @@ body {
 
 .gradient-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
 }
 
 .gradient-btn:active {
@@ -118,7 +117,7 @@ body {
 
 .input-focus:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
 }
 
 /* 平滑动画 */
@@ -153,11 +152,11 @@ body {
 
 /* 渐变背景 */
 .gradient-bg {
-  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
+  background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 50%, #fdba74 100%);
 }
 
 @media (prefers-color-scheme: dark) {
   .gradient-bg {
-    background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+    background: linear-gradient(135deg, #1c1917 0%, #292524 50%, #44403c 100%);
   }
 }

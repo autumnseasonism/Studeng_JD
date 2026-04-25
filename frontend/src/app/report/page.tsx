@@ -172,16 +172,16 @@ export default function ReportPage() {
       {/* 头部 */}
       <header className="glass sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">大学生求职陪跑助手</h1>
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-green-600">大学生求职陪跑助手</h1>
           <div className="flex items-center gap-6">
             <button 
-              className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+              className="text-sm font-medium text-orange-600 hover:text-orange-800 transition-colors"
               onClick={() => router.push('/')}
             >
               返回上传页
             </button>
             <button 
-              className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+              className="text-sm font-medium text-orange-600 hover:text-orange-800 transition-colors"
               onClick={() => router.push('/history')}
             >
               本地历史
@@ -197,11 +197,11 @@ export default function ReportPage() {
           <div className="glass p-6 rounded-xl mb-8 card-hover">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
               <div>
-                <h2 className="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">简历分析报告</h2>
+                <h2 className="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-green-600">简历分析报告</h2>
                 <p className="text-gray-600 dark:text-gray-300">创建时间：{new Date().toLocaleString()}</p>
               </div>
               {result.has_jd && (
-                <div className="mt-4 md:mt-0 px-4 py-2 bg-blue-100 text-blue-700 rounded-full">
+                <div className="mt-4 md:mt-0 px-4 py-2 bg-orange-100 text-orange-700 rounded-full">
                   基于岗位描述分析
                 </div>
               )}
@@ -209,9 +209,9 @@ export default function ReportPage() {
             
             {/* 顶部摘要区 */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <div className="glass p-5 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
+              <div className="glass p-5 rounded-xl bg-gradient-to-br from-orange-50 to-green-50 dark:from-orange-900/20 dark:to-green-900/20">
                 <h3 className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">整体竞争力评分</h3>
-                <div className="text-4xl font-bold text-blue-600 mb-1">{result.diagnosis_report.score}</div>
+                <div className="text-4xl font-bold text-orange-600 mb-1">{result.diagnosis_report.score}</div>
                 <div className="text-sm text-gray-600 dark:text-gray-300">{result.diagnosis_report.level}</div>
               </div>
               {result.has_jd && (
@@ -290,7 +290,7 @@ export default function ReportPage() {
                               </div>
                               <div>
                                 <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">示例改写</h4>
-                                <div className="glass p-4 rounded-lg text-sm bg-blue-50 dark:bg-blue-900/30">{suggestion.example}</div>
+                                <div className="glass p-4 rounded-lg text-sm bg-orange-50 dark:bg-orange-900/30">{suggestion.example}</div>
                               </div>
                               <div>
                                 <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">待补充信息</h4>

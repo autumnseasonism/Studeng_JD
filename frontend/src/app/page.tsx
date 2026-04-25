@@ -154,15 +154,15 @@ export default function UploadPage() {
       {/* 头部 */}
       <header className="glass sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">大学生求职陪跑助手</h1>
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-green-600">大学生求职陪跑助手</h1>
           <div className="flex items-center gap-6">
             {quota && (
               <div className="glass px-4 py-2 rounded-full text-sm font-medium">
-                剩余分析次数: <span className="text-blue-500 font-semibold">{quota.analysis_remaining_today}</span>
+                剩余分析次数: <span className="text-orange-500 font-semibold">{quota.analysis_remaining_today}</span>
               </div>
             )}
             <button 
-              className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+              className="text-sm font-medium text-orange-600 hover:text-orange-800 transition-colors"
               onClick={() => router.push('/history')}
             >
               本地历史
@@ -175,7 +175,7 @@ export default function UploadPage() {
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto fade-in">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-green-600">
               上传简历，开始分析
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -195,7 +195,7 @@ export default function UploadPage() {
               <div className="glass p-6 rounded-xl card-hover">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">上传简历文件</h3>
                 <div
-                  className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all duration-300 ${isDragging ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-gray-300 hover:border-blue-400'}`}
+                  className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all duration-300 ${isDragging ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20' : 'border-gray-300 hover:border-orange-400'}`}
                   onDragOver={handleDragOver}
                   onDragLeave={handleDragLeave}
                   onDrop={handleDrop}
@@ -302,7 +302,7 @@ export default function UploadPage() {
               </button>
               <button
                 type="button"
-                className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors self-center"
+                className="text-sm font-medium text-orange-600 hover:text-orange-800 transition-colors self-center"
               >
                 查看示例
               </button>

@@ -143,16 +143,16 @@ export default function EditorPage() {
       {/* 头部 */}
       <header className="glass sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">大学生求职陪跑助手</h1>
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-green-600">大学生求职陪跑助手</h1>
           <div className="flex items-center gap-6">
             <button 
-              className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+              className="text-sm font-medium text-orange-600 hover:text-orange-800 transition-colors"
               onClick={handleGoBack}
             >
               返回报告
             </button>
             <button 
-              className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+              className="text-sm font-medium text-orange-600 hover:text-orange-800 transition-colors"
               onClick={() => router.push('/history')}
             >
               本地历史
@@ -165,7 +165,7 @@ export default function EditorPage() {
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-7xl mx-auto fade-in">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+            <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-green-600">
               简历编辑器
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
