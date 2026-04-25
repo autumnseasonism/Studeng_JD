@@ -150,19 +150,19 @@ export default function UploadPage() {
   };
   
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen gradient-bg">
       {/* 头部 */}
-      <header className="bg-white shadow-sm">
+      <header className="glass sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">大学生求职陪跑助手</h1>
-          <div className="flex items-center gap-4">
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">大学生求职陪跑助手</h1>
+          <div className="flex items-center gap-6">
             {quota && (
-              <div className="text-sm text-gray-600">
-                今日剩余分析次数: {quota.analysis_remaining_today}
+              <div className="glass px-4 py-2 rounded-full text-sm font-medium">
+                剩余分析次数: <span className="text-blue-500 font-semibold">{quota.analysis_remaining_today}</span>
               </div>
             )}
             <button 
-              className="text-sm text-blue-600 hover:text-blue-800"
+              className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
               onClick={() => router.push('/history')}
             >
               本地历史
@@ -172,23 +172,30 @@ export default function UploadPage() {
       </header>
       
       {/* 主内容 */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-6 text-center">上传简历，开始分析</h2>
+      <main className="container mx-auto px-4 py-12">
+        <div className="max-w-5xl mx-auto fade-in">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+              上传简历，开始分析
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              让AI帮你诊断简历问题，生成优化建议，提升求职竞争力
+            </p>
+          </div>
           
           {error && (
-            <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md">
+            <div className="mb-8 p-4 bg-red-100 text-red-700 rounded-lg shadow-md">
               {error}
             </div>
           )}
           
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
+          <form onSubmit={handleSubmit} className="space-y-8">
+            <div className="grid md:grid-cols-2 gap-8">
               {/* 左侧：文件上传 */}
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-lg font-medium mb-4">上传简历文件</h3>
+              <div className="glass p-6 rounded-xl card-hover">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">上传简历文件</h3>
                 <div
-                  className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${isDragging ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-blue-400'}`}
+                  className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all duration-300 ${isDragging ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-gray-300 hover:border-blue-400'}`}
                   onDragOver={handleDragOver}
                   onDragLeave={handleDragLeave}
                   onDrop={handleDrop}
@@ -202,68 +209,71 @@ export default function UploadPage() {
                     accept=".pdf,.docx,.txt,.md"
                   />
                   {file ? (
-                    <div className="space-y-2">
-                      <div className="text-green-600 font-medium">✓ 文件已选择</div>
-                      <div className="text-sm text-gray-600">{file.name}</div>
-                      <div className="text-sm text-gray-500">{Math.round(file.size / 1024)} KB</div>
+                    <div className="space-y-3">
+                      <div className="text-green-500 font-medium text-lg">✓ 文件已选择</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-300">{file.name}</div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400">{Math.round(file.size / 1024)} KB</div>
                     </div>
                   ) : (
-                    <div className="space-y-2">
-                      <div className="text-gray-500">拖拽文件到此处或点击选择文件</div>
-                      <div className="text-xs text-gray-400">支持 PDF、DOCX、TXT、MD，最大 10MB</div>
+                    <div className="space-y-3">
+                      <div className="text-gray-600 dark:text-gray-300 text-lg">拖拽文件到此处或点击选择文件</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">支持 PDF、DOCX、TXT、MD，最大 10MB</div>
                     </div>
                   )}
                 </div>
               </div>
               
               {/* 右侧：文本输入 */}
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-lg font-medium mb-4">或粘贴简历文本</h3>
+              <div className="glass p-6 rounded-xl card-hover">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">或粘贴简历文本</h3>
                 <textarea
                   value={resumeText}
                   onChange={(e) => setResumeText(e.target.value)}
                   placeholder="请粘贴简历文本..."
-                  className="w-full h-64 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full h-64 p-4 border border-gray-300 rounded-lg focus:outline-none input-focus bg-white/80 dark:bg-gray-800/80"
                 />
               </div>
             </div>
             
             {/* 目标岗位和JD */}
-            <div className="bg-white p-6 rounded-lg shadow-sm space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">目标岗位</label>
-                <input
-                  type="text"
-                  value={jobTarget}
-                  onChange={(e) => setJobTarget(e.target.value)}
-                  placeholder="例如：产品运营实习生"
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">岗位描述 (可选)</label>
-                <textarea
-                  value={jobDescription}
-                  onChange={(e) => setJobDescription(e.target.value)}
-                  placeholder="请粘贴岗位JD..."
-                  className="w-full h-40 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">求职类型</label>
-                <select
-                  value={jobType}
-                  onChange={(e) => setJobType(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  {jobTypeOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
+            <div className="glass p-6 rounded-xl card-hover">
+              <h3 className="text-lg font-semibold mb-6 text-gray-800 dark:text-gray-200">岗位信息</h3>
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">目标岗位</label>
+                  <input
+                    type="text"
+                    value={jobTarget}
+                    onChange={(e) => setJobTarget(e.target.value)}
+                    placeholder="例如：产品运营实习生"
+                    className="w-full p-4 border border-gray-300 rounded-lg input-focus bg-white/80 dark:bg-gray-800/80"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">岗位描述 (可选)</label>
+                  <textarea
+                    value={jobDescription}
+                    onChange={(e) => setJobDescription(e.target.value)}
+                    placeholder="请粘贴岗位JD..."
+                    className="w-full h-48 p-4 border border-gray-300 rounded-lg input-focus bg-white/80 dark:bg-gray-800/80"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">求职类型</label>
+                  <select
+                    value={jobType}
+                    onChange={(e) => setJobType(e.target.value)}
+                    className="w-full p-4 border border-gray-300 rounded-lg input-focus bg-white/80 dark:bg-gray-800/80"
+                  >
+                    {jobTypeOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
             
@@ -272,20 +282,27 @@ export default function UploadPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-md font-medium hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed transition-colors"
+                className="flex-1 gradient-btn py-4 px-8 rounded-lg font-semibold text-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
               >
-                {isSubmitting ? '分析中...' : '开始分析'}
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full loading-spinner"></div>
+                    <span>分析中...</span>
+                  </div>
+                ) : (
+                  '开始分析'
+                )}
               </button>
               <button
                 type="button"
                 onClick={handleClear}
-                className="flex-1 border border-gray-300 text-gray-700 py-3 px-6 rounded-md font-medium hover:bg-gray-50 transition-colors"
+                className="flex-1 glass py-4 px-8 rounded-lg font-semibold text-lg transition-colors hover:bg-white/20 dark:hover:bg-gray-700/40"
               >
                 清空
               </button>
               <button
                 type="button"
-                className="text-sm text-blue-600 hover:text-blue-800 self-center"
+                className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors self-center"
               >
                 查看示例
               </button>
@@ -293,6 +310,13 @@ export default function UploadPage() {
           </form>
         </div>
       </main>
+      
+      {/* 页脚 */}
+      <footer className="glass py-6 mt-12">
+        <div className="container mx-auto px-4 text-center text-sm text-gray-600 dark:text-gray-400">
+          <p>© 2026 大学生求职陪跑助手 | 让求职更简单</p>
+        </div>
+      </footer>
     </div>
   );
 }

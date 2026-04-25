@@ -139,20 +139,20 @@ export default function EditorPage() {
   };
   
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen gradient-bg">
       {/* 头部 */}
-      <header className="bg-white shadow-sm">
+      <header className="glass sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">大学生求职陪跑助手</h1>
-          <div className="flex items-center gap-4">
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">大学生求职陪跑助手</h1>
+          <div className="flex items-center gap-6">
             <button 
-              className="text-sm text-blue-600 hover:text-blue-800"
+              className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
               onClick={handleGoBack}
             >
               返回报告
             </button>
             <button 
-              className="text-sm text-blue-600 hover:text-blue-800"
+              className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
               onClick={() => router.push('/history')}
             >
               本地历史
@@ -162,80 +162,96 @@ export default function EditorPage() {
       </header>
       
       {/* 主内容 */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="max-w-7xl mx-auto">
+      <main className="container mx-auto px-4 py-12">
+        <div className="max-w-7xl mx-auto fade-in">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+              简历编辑器
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              编辑优化后的简历，支持Markdown格式，实时预览效果
+            </p>
+          </div>
+          
           {/* 工具栏 */}
-          <div className="bg-white p-4 rounded-lg shadow-sm mb-4 flex flex-wrap gap-4 items-center">
-            <div className="flex-1 min-w-[200px]">
-              <label className="block text-sm font-medium text-gray-700 mb-1">版本名称</label>
+          <div className="glass p-6 rounded-xl mb-6 flex flex-wrap gap-4 items-center">
+            <div className="flex-1 min-w-[250px]">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">版本名称</label>
               <input
                 type="text"
                 value={versionName}
                 onChange={(e) => setVersionName(e.target.value)}
                 placeholder="输入版本名称"
-                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full p-3 border border-gray-300 rounded-lg input-focus bg-white/80 dark:bg-gray-800/80"
               />
             </div>
             <button
               onClick={saveVersion}
               disabled={isSaving}
-              className="bg-blue-600 text-white py-2 px-4 rounded-md font-medium hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed transition-colors"
+              className="gradient-btn py-3 px-6 rounded-lg font-semibold disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
             >
-              {isSaving ? '保存中...' : '保存本地版本'}
+              {isSaving ? (
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full loading-spinner"></div>
+                  <span>保存中...</span>
+                </div>
+              ) : (
+                '保存本地版本'
+              )}
             </button>
             <button
               onClick={copyMarkdown}
-              className="bg-white text-gray-700 py-2 px-4 rounded-md font-medium hover:bg-gray-50 transition-colors border border-gray-200"
+              className="glass py-3 px-6 rounded-lg font-semibold transition-colors hover:bg-white/20 dark:hover:bg-gray-700/40"
             >
               复制 Markdown
             </button>
             <button
               onClick={copyPlainText}
-              className="bg-white text-gray-700 py-2 px-4 rounded-md font-medium hover:bg-gray-50 transition-colors border border-gray-200"
+              className="glass py-3 px-6 rounded-lg font-semibold transition-colors hover:bg-white/20 dark:hover:bg-gray-700/40"
             >
               复制纯文本
             </button>
             <button
               onClick={downloadMarkdown}
-              className="bg-white text-gray-700 py-2 px-4 rounded-md font-medium hover:bg-gray-50 transition-colors border border-gray-200"
+              className="glass py-3 px-6 rounded-lg font-semibold transition-colors hover:bg-white/20 dark:hover:bg-gray-700/40"
             >
               下载 .md
             </button>
             <button
               onClick={handleViewCompare}
-              className="bg-white text-gray-700 py-2 px-4 rounded-md font-medium hover:bg-gray-50 transition-colors border border-gray-200"
+              className="glass py-3 px-6 rounded-lg font-semibold transition-colors hover:bg-white/20 dark:hover:bg-gray-700/40"
             >
               查看对比
             </button>
           </div>
           
           {saveError && (
-            <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md">
+            <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg shadow-md">
               {saveError}
             </div>
           )}
           
           {/* 编辑和预览区域 */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* 左侧：Markdown编辑器 */}
-            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-              <div className="p-2 bg-gray-100 border-b border-gray-200">
-                <h3 className="font-medium text-gray-700">Markdown 编辑器</h3>
+            <div className="glass rounded-xl overflow-hidden card-hover">
+              <div className="p-4 bg-gray-100 dark:bg-gray-800/60 border-b border-gray-200 dark:border-gray-700">
+                <h3 className="font-medium text-gray-800 dark:text-gray-200">Markdown 编辑器</h3>
               </div>
               <textarea
                 value={markdown}
                 onChange={(e) => setMarkdown(e.target.value)}
-                className="w-full h-[600px] p-4 border-none focus:outline-none resize-none"
+                className="w-full h-[600px] p-6 border-none focus:outline-none resize-none bg-white/80 dark:bg-gray-800/80"
                 placeholder="请编辑你的简历..."
               />
             </div>
             
             {/* 右侧：实时预览 */}
-            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-              <div className="p-2 bg-gray-100 border-b border-gray-200">
-                <h3 className="font-medium text-gray-700">实时预览</h3>
+            <div className="glass rounded-xl overflow-hidden card-hover">
+              <div className="p-4 bg-gray-100 dark:bg-gray-800/60 border-b border-gray-200 dark:border-gray-700">
+                <h3 className="font-medium text-gray-800 dark:text-gray-200">实时预览</h3>
               </div>
-              <div className="p-4 h-[600px] overflow-auto">
+              <div className="p-6 h-[600px] overflow-auto bg-white/80 dark:bg-gray-800/80">
                 <MarkdownPreview markdown={markdown} />
               </div>
             </div>
@@ -243,14 +259,14 @@ export default function EditorPage() {
           
           {/* 版本历史 */}
           {versions.length > 0 && (
-            <div className="mt-6 bg-white p-4 rounded-lg shadow-sm">
-              <h3 className="font-medium text-gray-700 mb-3">版本历史</h3>
-              <div className="space-y-2">
+            <div className="mt-8 glass p-6 rounded-xl">
+              <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">版本历史</h3>
+              <div className="space-y-3">
                 {versions.map((version) => (
-                  <div key={version.version_id} className="p-3 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors">
+                  <div key={version.version_id} className="glass p-4 rounded-lg hover:bg-white/20 dark:hover:bg-gray-700/40 transition-colors">
                     <div className="flex justify-between items-center">
-                      <span className="font-medium">{version.name}</span>
-                      <span className="text-xs text-gray-500">{new Date(version.updated_at).toLocaleString()}</span>
+                      <span className="font-medium text-gray-800 dark:text-gray-200">{version.name}</span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">{new Date(version.updated_at).toLocaleString()}</span>
                     </div>
                   </div>
                 ))}
@@ -259,6 +275,13 @@ export default function EditorPage() {
           )}
         </div>
       </main>
+      
+      {/* 页脚 */}
+      <footer className="glass py-6 mt-12">
+        <div className="container mx-auto px-4 text-center text-sm text-gray-600 dark:text-gray-400">
+          <p>© 2026 大学生求职陪跑助手 | 让求职更简单</p>
+        </div>
+      </footer>
     </div>
   );
 }

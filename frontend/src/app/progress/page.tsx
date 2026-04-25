@@ -98,13 +98,13 @@ export default function ProgressPage() {
   }
   
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen gradient-bg">
       {/* 头部 */}
-      <header className="bg-white shadow-sm">
+      <header className="glass sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">大学生求职陪跑助手</h1>
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">大学生求职陪跑助手</h1>
           <button 
-            className="text-sm text-blue-600 hover:text-blue-800"
+            className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
             onClick={() => router.push('/')}
           >
             返回上传页
@@ -114,11 +114,18 @@ export default function ProgressPage() {
       
       {/* 主内容 */}
       <main className="container mx-auto px-4 py-16">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl font-semibold mb-8">分析进度</h2>
+        <div className="max-w-3xl mx-auto fade-in">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+              分析进度
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300">
+              正在分析你的简历，请稍候...
+            </p>
+          </div>
           
           {error && (
-            <div className="mb-8 p-4 bg-red-100 text-red-700 rounded-md">
+            <div className="mb-8 p-4 bg-red-100 text-red-700 rounded-lg shadow-md">
               {error}
             </div>
           )}
@@ -126,47 +133,52 @@ export default function ProgressPage() {
           {task && (
             <div className="space-y-8">
               {/* 阶段进度条 */}
-              <div className="space-y-4">
-                {Object.entries(stageConfig).map(([key, config]) => {
-                  const stage = key as Stage;
-                  const isCurrent = task.stage === stage;
-                  const isCompleted = getStageIndex(stage as any) < getStageIndex(task.stage as any);
-                  const isError = task.status === 'failed';
-                  
-                  return (
-                    <div key={key} className="flex items-center space-x-4">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${isCompleted ? 'bg-green-500 text-white' : isCurrent ? 'bg-blue-500 text-white' : isError ? 'bg-red-500 text-white' : 'bg-gray-200 text-gray-500'}`}>
-                        {isCompleted ? '✓' : isCurrent ? '⟳' : isError ? '✗' : ''}
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex justify-between items-center mb-1">
-                          <span className={`font-medium ${isCompleted ? 'text-green-600' : isCurrent ? 'text-blue-600' : isError ? 'text-red-600' : 'text-gray-500'}`}>
-                            {config.label}
-                          </span>
-                          {isCurrent && (
-                            <span className="text-xs text-blue-600">当前阶段</span>
-                          )}
+              <div className="glass p-6 rounded-xl">
+                <div className="space-y-6">
+                  {Object.entries(stageConfig).map(([key, config]) => {
+                    const stage = key as Stage;
+                    const isCurrent = task.stage === stage;
+                    const isCompleted = getStageIndex(stage as any) < getStageIndex(task.stage as any);
+                    const isError = task.status === 'failed';
+                    
+                    return (
+                      <div key={key} className="flex items-center space-x-4">
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center ${isCompleted ? 'bg-green-500 text-white' : isCurrent ? 'bg-blue-500 text-white' : isError ? 'bg-red-500 text-white' : 'bg-gray-200 text-gray-500'}`}>
+                          {isCompleted ? '✓' : isCurrent ? (
+                            <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full loading-spinner"></div>
+                          ) : isError ? '✗' : ''}
                         </div>
-                        <div className="text-sm text-gray-500">{config.description}</div>
+                        <div className="flex-1">
+                          <div className="flex justify-between items-center mb-1">
+                            <span className={`font-medium ${isCompleted ? 'text-green-600' : isCurrent ? 'text-blue-600' : isError ? 'text-red-600' : 'text-gray-500'}`}>
+                              {config.label}
+                            </span>
+                            {isCurrent && (
+                              <span className="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">当前阶段</span>
+                            )}
+                          </div>
+                          <div className="text-sm text-gray-500">{config.description}</div>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
               
               {/* 状态信息 */}
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <div className="text-lg font-medium mb-2">
+              <div className="glass p-6 rounded-xl">
+                <div className="text-xl font-semibold mb-4">
                   {task.status === 'pending' && '等待分析'}
                   {task.status === 'processing' && '分析中'}
                   {task.status === 'succeeded' && '分析完成'}
                   {task.status === 'failed' && '分析失败'}
                 </div>
-                <div className="text-gray-600 mb-4">
+                <div className="text-gray-600 mb-6">
                   {task.error_message || stageConfig[task.stage as Stage]?.description}
                 </div>
-                <div className="text-sm text-gray-500">
-                  已等待时间: {formatTime(elapsedTime)}
+                <div className="text-sm text-gray-500 flex items-center justify-center gap-2">
+                  <span>已等待时间:</span>
+                  <span className="font-medium text-blue-600">{formatTime(elapsedTime)}</span>
                 </div>
               </div>
               
@@ -175,13 +187,13 @@ export default function ProgressPage() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button
                     onClick={() => router.push('/')}
-                    className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-md font-medium hover:bg-blue-700 transition-colors"
+                    className="flex-1 gradient-btn py-4 px-8 rounded-lg font-semibold text-lg"
                   >
                     重新上传
                   </button>
                   <button
                     onClick={fetchTaskStatus}
-                    className="flex-1 border border-gray-300 text-gray-700 py-3 px-6 rounded-md font-medium hover:bg-gray-50 transition-colors"
+                    className="flex-1 glass py-4 px-8 rounded-lg font-semibold text-lg transition-colors hover:bg-white/20 dark:hover:bg-gray-700/40"
                   >
                     重试
                   </button>
@@ -191,6 +203,13 @@ export default function ProgressPage() {
           )}
         </div>
       </main>
+      
+      {/* 页脚 */}
+      <footer className="glass py-6 mt-12">
+        <div className="container mx-auto px-4 text-center text-sm text-gray-600 dark:text-gray-400">
+          <p>© 2026 大学生求职陪跑助手 | 让求职更简单</p>
+        </div>
+      </footer>
     </div>
   );
 }

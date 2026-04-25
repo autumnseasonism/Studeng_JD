@@ -168,20 +168,20 @@ export default function ReportPage() {
   }
   
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen gradient-bg">
       {/* 头部 */}
-      <header className="bg-white shadow-sm">
+      <header className="glass sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">大学生求职陪跑助手</h1>
-          <div className="flex items-center gap-4">
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">大学生求职陪跑助手</h1>
+          <div className="flex items-center gap-6">
             <button 
-              className="text-sm text-blue-600 hover:text-blue-800"
+              className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
               onClick={() => router.push('/')}
             >
               返回上传页
             </button>
             <button 
-              className="text-sm text-blue-600 hover:text-blue-800"
+              className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
               onClick={() => router.push('/history')}
             >
               本地历史
@@ -191,17 +191,17 @@ export default function ReportPage() {
       </header>
       
       {/* 主内容 */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="max-w-6xl mx-auto">
+      <main className="container mx-auto px-4 py-12">
+        <div className="max-w-6xl mx-auto fade-in">
           {/* 报告头部 */}
-          <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+          <div className="glass p-6 rounded-xl mb-8 card-hover">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
               <div>
-                <h2 className="text-2xl font-semibold mb-2">简历分析报告</h2>
-                <p className="text-gray-600">创建时间：{new Date().toLocaleString()}</p>
+                <h2 className="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">简历分析报告</h2>
+                <p className="text-gray-600 dark:text-gray-300">创建时间：{new Date().toLocaleString()}</p>
               </div>
               {result.has_jd && (
-                <div className="mt-4 md:mt-0 px-4 py-2 bg-blue-50 text-blue-700 rounded-md">
+                <div className="mt-4 md:mt-0 px-4 py-2 bg-blue-100 text-blue-700 rounded-full">
                   基于岗位描述分析
                 </div>
               )}
@@ -209,21 +209,21 @@ export default function ReportPage() {
             
             {/* 顶部摘要区 */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-lg">
-                <h3 className="text-sm font-medium text-gray-600 mb-1">整体竞争力评分</h3>
-                <div className="text-3xl font-bold text-blue-600">{result.diagnosis_report.score}</div>
-                <div className="text-sm text-gray-600">{result.diagnosis_report.level}</div>
+              <div className="glass p-5 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
+                <h3 className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">整体竞争力评分</h3>
+                <div className="text-4xl font-bold text-blue-600 mb-1">{result.diagnosis_report.score}</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">{result.diagnosis_report.level}</div>
               </div>
               {result.has_jd && (
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-lg">
-                  <h3 className="text-sm font-medium text-gray-600 mb-1">岗位匹配度</h3>
-                  <div className="text-3xl font-bold text-green-600">{result.diagnosis_report.match_score}%</div>
-                  <div className="text-sm text-gray-600">与目标岗位的匹配程度</div>
+                <div className="glass p-5 rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20">
+                  <h3 className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">岗位匹配度</h3>
+                  <div className="text-4xl font-bold text-green-600 mb-1">{result.diagnosis_report.match_score}%</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">与目标岗位的匹配程度</div>
                 </div>
               )}
-              <div className="bg-gradient-to-br from-amber-50 to-yellow-50 p-4 rounded-lg">
-                <h3 className="text-sm font-medium text-gray-600 mb-1">优先修改项</h3>
-                <ul className="text-sm text-gray-700 space-y-1">
+              <div className="glass p-5 rounded-xl bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20">
+                <h3 className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">优先修改项</h3>
+                <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
                   {result.diagnosis_report.priority_items.map((item: string, index: number) => (
                     <li key={index} className="flex items-start">
                       <span className="mr-2 text-amber-500">•</span>
@@ -236,7 +236,7 @@ export default function ReportPage() {
           </div>
           
           {/* 模块审计区 */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             {Object.entries(result.module_audit).map(([module, data]) => {
               const moduleNameMap: Record<string, string> = {
                 education: '教育背景',
@@ -251,50 +251,50 @@ export default function ReportPage() {
               if (suggestions.length === 0) return null;
               
               return (
-                <div key={module} className="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 className="text-lg font-semibold mb-4">{moduleName}</h3>
-                  <div className="space-y-4">
+                <div key={module} className="glass p-6 rounded-xl card-hover">
+                  <h3 className="text-xl font-semibold mb-6 text-gray-800 dark:text-gray-200">{moduleName}</h3>
+                  <div className="space-y-6">
                     {suggestions.map((suggestion: Suggestion, index: number) => (
                       <div 
                         key={index} 
-                        className="border border-gray-200 rounded-lg overflow-hidden"
+                        className="glass rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700"
                       >
                         <div 
-                          className="p-4 bg-gray-50 cursor-pointer flex justify-between items-center"
+                          className="p-4 cursor-pointer flex justify-between items-center transition-colors hover:bg-white/20 dark:hover:bg-gray-800/40"
                           onClick={() => setExpandedSuggestion(expandedSuggestion === `${module}-${index}` ? null : `${module}-${index}`)}
                         >
-                          <div className="flex items-center">
-                            <span className={`px-2 py-1 text-xs rounded-full ${suggestion.priority === '高' ? 'bg-red-100 text-red-800' : suggestion.priority === '中' ? 'bg-amber-100 text-amber-800' : 'bg-green-100 text-green-800'}`}>
+                          <div className="flex items-center gap-3">
+                            <span className={`px-3 py-1 text-xs font-medium rounded-full ${suggestion.priority === '高' ? 'bg-red-100 text-red-800' : suggestion.priority === '中' ? 'bg-amber-100 text-amber-800' : 'bg-green-100 text-green-800'}`}>
                               {suggestion.priority}
                             </span>
-                            <span className="ml-3 font-medium">{suggestion.problem}</span>
+                            <span className="font-medium text-gray-800 dark:text-gray-200">{suggestion.problem}</span>
                           </div>
-                          <span className={`transition-transform ${expandedSuggestion === `${module}-${index}` ? 'transform rotate-180' : ''}`}>
+                          <span className={`transition-transform duration-300 ${expandedSuggestion === `${module}-${index}` ? 'transform rotate-180' : ''}`}>
                             ▼
                           </span>
                         </div>
                         {expandedSuggestion === `${module}-${index}` && (
-                          <div className="p-4 border-t border-gray-200">
-                            <div className="space-y-3">
+                          <div className="p-6 border-t border-gray-200 dark:border-gray-700">
+                            <div className="space-y-4">
                               <div>
-                                <h4 className="text-sm font-medium text-gray-600 mb-1">原始片段</h4>
-                                <div className="bg-gray-50 p-3 rounded text-sm">{suggestion.original}</div>
+                                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">原始片段</h4>
+                                <div className="glass p-4 rounded-lg text-sm bg-gray-50 dark:bg-gray-800/60">{suggestion.original}</div>
                               </div>
                               <div>
-                                <h4 className="text-sm font-medium text-gray-600 mb-1">问题影响</h4>
-                                <p className="text-sm text-gray-700">{suggestion.impact}</p>
+                                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">问题影响</h4>
+                                <p className="text-sm text-gray-700 dark:text-gray-300">{suggestion.impact}</p>
                               </div>
                               <div>
-                                <h4 className="text-sm font-medium text-gray-600 mb-1">修改方向</h4>
-                                <p className="text-sm text-gray-700">{suggestion.direction}</p>
+                                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">修改方向</h4>
+                                <p className="text-sm text-gray-700 dark:text-gray-300">{suggestion.direction}</p>
                               </div>
                               <div>
-                                <h4 className="text-sm font-medium text-gray-600 mb-1">示例改写</h4>
-                                <div className="bg-blue-50 p-3 rounded text-sm">{suggestion.example}</div>
+                                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">示例改写</h4>
+                                <div className="glass p-4 rounded-lg text-sm bg-blue-50 dark:bg-blue-900/30">{suggestion.example}</div>
                               </div>
                               <div>
-                                <h4 className="text-sm font-medium text-gray-600 mb-1">待补充信息</h4>
-                                <p className="text-sm text-gray-700">{suggestion.missing}</p>
+                                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">待补充信息</h4>
+                                <p className="text-sm text-gray-700 dark:text-gray-300">{suggestion.missing}</p>
                               </div>
                             </div>
                           </div>
@@ -308,28 +308,35 @@ export default function ReportPage() {
           </div>
           
           {/* 右侧操作区 */}
-          <div className="fixed right-4 bottom-4 flex flex-col gap-2">
+          <div className="fixed right-6 bottom-6 flex flex-col gap-3 z-40">
             <button
               onClick={handleViewOptimized}
-              className="bg-blue-600 text-white py-3 px-6 rounded-md font-medium hover:bg-blue-700 transition-colors shadow-lg flex items-center gap-2"
+              className="gradient-btn py-4 px-8 rounded-lg font-semibold text-lg shadow-lg flex items-center justify-center gap-2"
             >
               <span>查看优化简历</span>
             </button>
             <button
               onClick={handleViewCompare}
-              className="bg-white text-gray-700 py-3 px-6 rounded-md font-medium hover:bg-gray-50 transition-colors shadow-lg border border-gray-200 flex items-center gap-2"
+              className="glass py-4 px-8 rounded-lg font-semibold text-lg shadow-lg transition-colors hover:bg-white/20 dark:hover:bg-gray-700/40 flex items-center justify-center gap-2"
             >
               <span>查看版本对比</span>
             </button>
             <button
               onClick={handleFollowup}
-              className="bg-white text-gray-700 py-3 px-6 rounded-md font-medium hover:bg-gray-50 transition-colors shadow-lg border border-gray-200 flex items-center gap-2"
+              className="glass py-4 px-8 rounded-lg font-semibold text-lg shadow-lg transition-colors hover:bg-white/20 dark:hover:bg-gray-700/40 flex items-center justify-center gap-2"
             >
               <span>继续追问</span>
             </button>
           </div>
         </div>
       </main>
+      
+      {/* 页脚 */}
+      <footer className="glass py-6 mt-12">
+        <div className="container mx-auto px-4 text-center text-sm text-gray-600 dark:text-gray-400">
+          <p>© 2026 大学生求职陪跑助手 | 让求职更简单</p>
+        </div>
+      </footer>
     </div>
   );
 }
